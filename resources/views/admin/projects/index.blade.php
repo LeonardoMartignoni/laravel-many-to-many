@@ -10,6 +10,7 @@
         <th scope="col">ID</th>
         <th scope="col">Title</th>
         <th scope="col">Type</th>
+        <th scope="col">Technologies</th>
         <th scope="col">Description</th>
         <th scope="col">Thumbnail</th>
         <th scope="col">Actions</th>
@@ -23,6 +24,15 @@
           <td>
             <span class="badge rounded-pill"
               style="background-color: {{ $project->type?->color ?? 'black' }}">{{ $project->type?->label ?? 'No type' }}</span>
+          </td>
+          <td>
+            @forelse ($project->technologies as $technology)
+              <span class="badge rounded-pill"
+                style="background-color: {{ $technology->color }}">{{ $technology->label }}</span>
+            @empty
+              <span class="badge rounded-pill" style="background-color: red">No Technology</span>
+            @endforelse
+
           </td>
           <td>{{ $project->getAbstract() }}</td>
           <td>{{ $project->thumbnail }}</td>
